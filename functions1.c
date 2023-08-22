@@ -73,14 +73,9 @@ return (1);
  */
 int handle_binary(unsigned int num)
 {
-    if (num == 0)
-    {
-        _putchar('0');
-        return 1;
-    }
-
     int binary_length = 0;
     unsigned int temp = num;
+
     while (temp > 0)
     {
         temp /= 2;
