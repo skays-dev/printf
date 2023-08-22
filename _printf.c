@@ -61,7 +61,7 @@ case 'p':
 {
 void *ptr = va_arg(args, void *);
 unsigned long ptr_value = (unsigned long)ptr;
-*count += len_hex_lower(ptr_value);
+count += len_hex_lower(ptr_value);
 handle_hex_lower(ptr_value);
 }
 break;
