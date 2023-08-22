@@ -1,5 +1,45 @@
 #include "main.h"
+#include <stdarg.h>
 
+/**
+ * _printf - Custom implementation of the printf function
+ * @format: The format string containing format specifiers
+ * @...: The variable number of arguments to format and print
+ * Return: The total number of characters printed
+ *
+ * This function implements a subset of the printf function's functionality.
+ * It processes the format string and any additional arguments provided
+ * using the provided format specifiers. It supports the following format
+ * specifiers: %c, %s, %S, %%, %d, and %i. Any other characters are printed
+ * as-is. The function returns the total number of characters printed.
+ */
+int _printf(const char *format, ...)
+{
+int count = 0;
+int i = 0;
+va_list args;
+
+va_start(args, format);
+
+while (format && format[i])
+{
+if (format[i] == '%')
+{
+i++;
+count = swapShift(args, count, &i, format);
+}
+else
+{
+_putchar(format[i]);
+count++;
+}
+i++;
+}
+
+va_end(args);
+
+return count;
+}
 
 /**
  * swapShift - Process a single conversion specifier in the printf format string
@@ -24,7 +64,6 @@
  * - %i: Prints an integer as a signed decimal number (same as %d).
  * - Default case: Prints unknown format specifiers and increments `count` by 2.
  */
-
 int swapShift(va_list args, int count, int *i, const char *str)
 {
 switch (str[*i])
@@ -34,80 +73,31 @@ _putchar(va_arg(args, int));
 count++;
 break;
 case 's': // %s
+case 'S': // %s (same behavior)
 {
-char *str = va_arg(args, char *);
-count += handle_string(str);
-break;
+char *s = va_arg(args, char *);
+count += handle_string(s);
 }
-case 'S': // %s
-{
-char *str = va_arg(args, char *);
-count += handle_string(str);
 break;
-}
 case '%': // %%
 _putchar('%');
 count++;
 break;
 case 'd': // %d or %i
 case 'i':
+{
 int number = va_arg(args, int);
 if (number < 0)
 count++;
 count += len_num(number);
 handle_number(number);
+}
+break;
 default: // %unknown
-_putchar(s[*i - 1]);
-_putchar(s[*i]);
+_putchar(str[*i - 1]);
+_putchar(str[*i]);
 count += 2;
 break;
 }
-return (count);
-}
-
-
-
-/**
- * _printf - custom implementation of printf function
- * @format: the format string
- * @...: variable number of arguments
- * Return: the number of characters printed
- */
-int _printf(const char *format, ...)
-{
-int count = 0, i = 0;
-va_list args;
-va_start(args, format);
-
-if (!format || (format[0] == '%' && !format[1]))
-{
-return (-1);
-}
-if (format[0] == '%' && format[1] == ' ' && !format[2])
-{
-return (-1);
-}
-
-while (format[i] && format)
-{
-if (format[i] == '%')
-{
-i++;
-count = swapShift(args, count, &i, format);
-}
-else
-{
-_putchar("%");
-count++;
-if (format[i])
-{
-_putchar(format[i]);
-count++;
-}
-}
-i++;
-}
-
-va_end(args);
 return count;
 }
