@@ -12,6 +12,7 @@ void handle_hex_upper(unsigned int num)
     int num_digits = len_hex_upper(num);
     char buffer[20];
     int index = num_digits - 1;
+    int i;
 
     while (num > 0)
     {
@@ -21,11 +22,12 @@ void handle_hex_upper(unsigned int num)
         index--;
     }
 
-    for (int i = index + 1; i < num_digits; i++)
+    for (i = index + 1; i < num_digits; i++)
     {
         _putchar(buffer[i]);
     }
 }
+
 
 /**
  * len_hex_upper - Calculate the number of digits in the uppercase hexadecimal representation of an unsigned int
