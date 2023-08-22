@@ -21,9 +21,9 @@ switch (str[*i])
 {
 case 'u':
 {
-unsigned number = va_arg(args, unsigned int);
-count += len_num_unsigned(number);
-handle_unsigned(number);
+unsigned int number = va_arg(args, unsigned int);
+count += len_num_unsigned(unsigned int number);
+handle_unsigned(unsigned int number);
 }
 break;
 case 'o':
