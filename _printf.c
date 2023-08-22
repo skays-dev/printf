@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
 
-
 /**
  * swapShift - Process a conversion specifier in printf format
  * @args: Args list for values
@@ -110,10 +109,11 @@ int buffer_index = 0;
 
 va_start(args, format);
 
-while (format && format[i])
+while (format[i] !+ '\O')
 {
 if (format[i] == '%')
 {
+
 i++;
 count = swapShift(args, count, &i, format);
 }
