@@ -68,22 +68,22 @@ int swapShift(va_list args, int count, int *i, const char *str)
 {
 switch (str[*i])
 {
-case 'c': // %c
+case 'c':
 _putchar(va_arg(args, int));
 count++;
 break;
-case 's': // %s
-case 'S': // %s (same behavior)
+case 's':
+case 'S':
 {
 char *s = va_arg(args, char *);
 count += handle_string(s);
 }
 break;
-case '%': // %%
+case '%':
 _putchar('%');
 count++;
 break;
-case 'd': // %d or %i
+case 'd':
 case 'i':
 {
 int number = va_arg(args, int);
@@ -93,7 +93,7 @@ count += len_num(number);
 handle_number(number);
 }
 break;
-default: // %unknown
+default:
 _putchar(str[*i - 1]);
 _putchar(str[*i]);
 count += 2;
