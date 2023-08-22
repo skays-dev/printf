@@ -19,7 +19,7 @@ int handle_conversion(va_list args, int count, char specifier)
 switch (specifier)
 {
 case 'u':
-count = handle_unsigned(args, count);
+count = unsigned int handle_unsigned(args, count);
 break;
 case 'o':
 count = handle_octal(args, count);
@@ -79,7 +79,7 @@ int swapShift(va_list args, int count, int *i, const char *str)
 (*i)++;
 char specifier = str[*i];
 count = handle_conversion(args, count, specifier);
-return count;
+return (count);
 }
 
 /**
