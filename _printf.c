@@ -109,7 +109,7 @@ int buffer_index = 0;
 
 va_start(args, format);
 
-while (format[i] !+ '\O')
+while (format[i] != '\O')
 {
 if (format[i] == '%')
 {
