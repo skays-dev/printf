@@ -44,14 +44,11 @@ break;
 case '%':
 _putchar('%');
 count++;
-break;
 case 'd':
 case 'i':
 count = handle_decimal(args, count);
-break;
 case 'b':
 count = handle_binary(args, count);
-break;
 default:
 _putchar(str[*i - 1]);
 _putchar(str[*i]);
@@ -110,7 +107,8 @@ while (format[i] != '\0')
 if (format[i] == '%')
 {
 i++;
-count = swapShift(args, count, &i, format);
+char specifier = format[i];
+count = handle_conversion(args, count, specifier);
 }
 else
 {
