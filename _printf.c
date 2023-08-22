@@ -1,47 +1,78 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "main.h"
+
+int swapShift(va_list args, int count, int *i, const char *str)
+{
+    switch (str[*i])
+    {
+    case 'c': // %c
+        _putchar(va_arg(args, int));
+        count++;
+        break;
+    case 's': // %s
+    {
+        char *str = va_arg(args, char *);
+        count += handle_string(str);
+        break;
+    }
+    case 'S': // %s
+    {
+        char *str = va_arg(args, char *);
+        count += handle_string(str);
+        break;
+    }
+    case '%': // %%
+        _putchar('%');
+        count++;
+        break;
+    case 'd': // %d or %i
+    case 'i':
+        int number = va_arg(args, int);
+        if (number < 0)
+            count++;
+        count += len_num(number);
+        handle_number(number);
+    default: // %unknown
+        _putchar(s[*i - 1]);
+        _putchar(s[*i]);
+        count += 2;
+        break;
+    }
+    return (count);
+}
 
 int _printf(const char *format, ...)
 {
+    int count = 0, i = 0;
     va_list args;
     va_start(args, format);
 
-    int count = 0; // To keep track of the number of characters printed
-
-    while (*format != '\0')
+    if (!format || (format[0] == '%' && !format[1]))
     {
-        if (*format == '%')
-        {
-            format++; // Move past the '%'
+        return (-1);
+    }
+    if (format[0] == '%' && format[1] == ' ' && !format[2])
+    {
+        return (-1);
+    }
 
-            if (*format == 'c') // Handle character specifier
-            {
-                char c = va_arg(args, int);
-                write(1, &c, 1);
-                count++;
-            }
-            else if (*format == 's') // Handle string specifier
-            {
-                char *s = va_arg(args, char *);
-                for (int i = 0; s[i] != '\0'; i++)
-                {
-                    write(1, &s[i], 1);
-                    count++;
-                }
-            }
-            else if (*format == '%') // Handle '%' specifier
-            {
-                write(1, "%", 1);
-                count++;
-            }
+    while (format[i] && format)
+    {
+        if (format[i] == '%')
+        {
+            i++;
+            count = swapShift(args, count, &i, format);
         }
         else
         {
-            write(1, format, 1);
+            _putchar("%");
             count++;
+            if (format[i])
+            {
+                _putchar(format[i]);
+                count++;
+            }
         }
-
-        format++;
+        i++;
     }
 
     va_end(args);
