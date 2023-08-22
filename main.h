@@ -1,14 +1,15 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
+
 #include <stdio.h>
-#include <unistd.h>
 #include <limits.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
+
+#define BUFFER_SIZE 1024
 
 int _putchar(char c);
 

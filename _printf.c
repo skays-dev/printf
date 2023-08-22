@@ -105,6 +105,9 @@ int count = 0;
 int i = 0;
 va_list args;
 
+char buffer[BUFFER_SIZE];
+int buffer_index = 0;
+
 va_start(args, format);
 
 while (format && format[i])
@@ -120,6 +123,10 @@ _putchar(format[i]);
 count++;
 }
 i++;
+}
+if (buffer_index > 0)
+{
+write(1, buffer, buffer_index);
 }
 
 va_end(args);
