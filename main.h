@@ -15,6 +15,7 @@ int _putchar(char c);
 int handle_string(char *str);
 int len_num(int num);
 int handle_number(int num);
+int handle_binary(unsigned int num);
 
 int _printf(const char *format, ...);
 

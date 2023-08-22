@@ -65,3 +65,36 @@ _putchar(num + '0');
 }
 return (1);
 }
+
+/**
+ * handle_binary - Print the binary representation of an unsigned int
+ * @num: The unsigned int to be printed in binary
+ * Return: The number of characters printed
+ */
+int handle_binary(unsigned int num)
+{
+    if (num == 0)
+    {
+        _putchar('0');
+        return 1;
+    }
+
+    int binary_length = 0;
+    unsigned int temp = num;
+    while (temp > 0)
+    {
+        temp /= 2;
+        binary_length++;
+    }
+
+    int count = 0;
+    while (binary_length > 0)
+    {
+        int bit = (num >> (binary_length - 1)) & 1;
+        _putchar(bit + '0');
+        count++;
+        binary_length--;
+    }
+
+    return count;
+}

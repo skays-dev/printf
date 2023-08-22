@@ -44,6 +44,12 @@ count += len_num(number);
 handle_number(number);
 }
 break;
+case 'b':
+{
+unsigned int number = va_arg(args, unsigned int);
+count += handle_binary(number);
+}
+break;
 default:
 _putchar(str[*i - 1]);
 _putchar(str[*i]);
