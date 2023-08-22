@@ -38,9 +38,9 @@ case '+':
 int num = va_arg(args, int);
 if (num >= 0)
 {
-*count += write(1, "+", 1);
+count += write(1, "+", 1);
 }
-handle_number(num); // Use your handle_number function here
+handle_number(num);
 }
 break;
 case 'x':
@@ -55,14 +55,14 @@ case '#':
 int num = va_arg(args, int);
 if (format[*i - 1] == 'o')
 {
-count += write(1, "0", 1); // Octal prefix
+count += write(1, "0", 1);
 }
 else if (format[*i - 1] == 'x' || format[*i - 1] == 'X')
 {
-count += write(1, "0", 1); // Hexadecimal prefix
-count += write(1, format + (*i - 1), 1); // Print 'x' or 'X'
+count += write(1, "0", 1); 
+count += write(1, format + (*i - 1), 1); 
 }
-handle_number(num); // Use your handle_number function here
+handle_number(num); 
 }
 break;
 case ' ':
@@ -72,7 +72,7 @@ if (num >= 0)
 {
 count += write(1, " ", 1);
 }
-handle_number(num); // Use your handle_number function here
+handle_number(num);
 }
 break;
 case 'X':
