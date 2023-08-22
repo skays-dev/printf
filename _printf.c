@@ -14,68 +14,59 @@
  * formats, and prints it. Updates `count` to track printed.
  */
 
+int handle_conversion(va_list args, int count, char specifier)
+{
+    switch (specifier)
+    {
+        case 'u':
+            count = handle_unsigned(args, count);
+            break;
+        case 'o':
+            count = handle_octal(args, count);
+            break;
+        case 'x':
+            count = handle_hex_lower(args, count);
+            break;
+        case 'X':
+            count = handle_hex_upper(args, count);
+            break;
+        case 'c':
+            _putchar(va_arg(args, int));
+            count++;
+            break;
+        case 's':
+        case 'S':
+            count += handle_string(args, count);
+            break;
+        case 'p':
+            count += handle_pointer(args, count);
+            break;
+        case '%':
+            _putchar('%');
+            count++;
+            break;
+        case 'd':
+        case 'i':
+            count = handle_decimal(args, count);
+            break;
+        case 'b':
+            count = handle_binary(args, count);
+            break;
+        default:
+            _putchar(str[*i - 1]);
+            _putchar(str[*i]);
+            count += 2;
+            break;
+    }
+    return count;
+}
+
 int swapShift(va_list args, int count, int *i, const char *str)
 {
-switch (str[*i])
-{
-case 'u':
-unsigned int num = va_arg(args, unsigned int);
-count += unsigned int len_num_unsigned(num);
-unsigned int handle_unsigned(num);
-break;
-case 'o':
-unsigned int number = va_arg(args, unsigned int);
-count += len_octal(number);
-handle_octal(number);
-break;
-case 'x':
-unsigned int number = va_arg(args, unsigned int);
-count += len_hex_lower(number);
-handle_hex_lower(number);
-break;
-case 'X':
-unsigned int number = va_arg(args, unsigned int);
-count += len_hex_upper(number);
-handle_hex_upper(number);
-break;
-case 'c':
-_putchar(va_arg(args, int));
-count++;
-break;
-case 's':
-case 'S':
-char *s = va_arg(args, char *);
-count += handle_string(s);
-break;
-case 'p':
-void *ptr = va_arg(args, void *);
-unsigned long ptr_value = (unsigned long)ptr;
-count += len_hex_lower(ptr_value);
-handle_hex_lower(ptr_value);
-break;
-case '%':
-_putchar('%');
-count++;
-break;
-case 'd':
-case 'i':
-int number = va_arg(args, int);
-if (number < 0)
-count++;
-count += len_num(number);
-handle_number(number);
-break;
-case 'b':
-unsigned int number = va_arg(args, unsigned int);
-count += handle_binary(number);
-break;
-default:
-_putchar(str[*i - 1]);
-_putchar(str[*i]);
-count += 2;
-break;
-}
-return (count);
+    (*i)++;
+    char specifier = str[*i];
+    count = handle_conversion(args, count, specifier);
+    return count;
 }
 
 /**
