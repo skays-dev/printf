@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * handle_hex_upper - Print the uppercase hexadecimal representation of an unsigned int
  * @num: The unsigned int to be printed in uppercase hexadecimal
