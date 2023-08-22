@@ -11,7 +11,7 @@ int handle_string(char *str)
 int i = 0;
 if (str == NULL)
 {
-handle_string('(null)');
+handle_string("(null)");
 return (i);
 }
 while (str[i])
