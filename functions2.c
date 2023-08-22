@@ -35,8 +35,9 @@ int len_num_unsigned(unsigned int num)
 void handle_octal(unsigned int num)
 {
     int num_digits = len_octal(num);
-    char buffer[20]; 
+    char buffer[20];
     int index = num_digits - 1;
+    int i; // Declare i outside the loop
 
     while (num > 0)
     {
@@ -45,7 +46,7 @@ void handle_octal(unsigned int num)
         index--;
     }
 
-    for (int i = index + 1; i < num_digits; i++)
+    for (i = index + 1; i < num_digits; i++) // Use the declared i
     {
         _putchar(buffer[i]);
     }
