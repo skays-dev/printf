@@ -38,7 +38,7 @@ i++;
 
 va_end(args);
 
-return count;
+return (count);
 }
 
 /**
@@ -89,5 +89,5 @@ _putchar(str[*i]);
 count += 2;
 break;
 }
-return count;
+return (count);
 }
