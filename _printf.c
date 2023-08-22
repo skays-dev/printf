@@ -57,6 +57,14 @@ char *s = va_arg(args, char *);
 count += handle_string(s);
 }
 break;
+case 'p':
+{
+void *ptr = va_arg(args, void *);
+unsigned long ptr_value = (unsigned long)ptr;
+*count += len_hex_lower(ptr_value);
+handle_hex_lower(ptr_value);
+}
+break;
 case '%':
 _putchar('%');
 count++;
