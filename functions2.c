@@ -100,7 +100,7 @@ void handle_hex_lower(unsigned int num)
         index--;
     }
 
-    for (i = index + 1; i < num_digits; i++) // Use the declared i
+    for (i = index + 1; i < num_digits; i++)
     {
         _putchar(buffer[i]);
     }
