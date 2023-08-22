@@ -33,46 +33,11 @@ count += len_octal(number);
 handle_octal(number);
 }
 break;
-case '+':
-{
-int num = va_arg(args, int);
-if (num >= 0)
-{
-count += _putchar("+");
-}
-handle_number(num);
-}
-break;
 case 'x':
 {
 unsigned int number = va_arg(args, unsigned int);
 count += len_hex_lower(number);
 handle_hex_lower(number);
-}
-break;
-case '#':
-{
-int num = va_arg(args, int);
-if (str[*i - 1] == 'o')
-{
-count += _putchar("0");
-}
-else if (str[*i - 1] == 'x' || str[*i - 1] == 'X')
-{
-count += _putchar("0");
-count += _putchar(str + (*i - 1));
-}
-handle_number(num);
-}
-break;
-case ' ':
-{
-int num = va_arg(args, int);
-if (num >= 0)
-{
-count += _putchar(" ");
-}
-handle_number(num);
 }
 break;
 case 'X':
@@ -180,6 +145,5 @@ write(1, buffer, buffer_index);
 
 va_end(args);
 
-return count;
+return (count);
 }
-
