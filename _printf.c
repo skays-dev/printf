@@ -16,6 +16,7 @@
 
 int swapShift(va_list args, int count, int *i, const char *str)
 {
+(*i)++;
 switch (str[*i])
 {
 case 'u':
@@ -32,11 +33,46 @@ count += len_octal(number);
 handle_octal(number);
 }
 break;
+case '+':
+{
+int num = va_arg(args, int);
+if (num >= 0)
+{
+*count += write(1, "+", 1);
+}
+handle_number(num); // Use your handle_number function here
+}
+break;
 case 'x':
 {
 unsigned int number = va_arg(args, unsigned int);
 count += len_hex_lower(number);
 handle_hex_lower(number);
+}
+break;
+case '#':
+{
+int num = va_arg(args, int);
+if (format[*i - 1] == 'o')
+{
+count += write(1, "0", 1); // Octal prefix
+}
+else if (format[*i - 1] == 'x' || format[*i - 1] == 'X')
+{
+count += write(1, "0", 1); // Hexadecimal prefix
+count += write(1, format + (*i - 1), 1); // Print 'x' or 'X'
+}
+handle_number(num); // Use your handle_number function here
+}
+break;
+case ' ':
+{
+int num = va_arg(args, int);
+if (num >= 0)
+{
+count += write(1, " ", 1);
+}
+handle_number(num); // Use your handle_number function here
 }
 break;
 case 'X':
