@@ -12,7 +12,7 @@
 
 int _putchar(char c);
 
-int handle_string(char *str);
+int handle_string(char str);
 int len_num(int num);
 int handle_number(int num);
 
