@@ -1,5 +1,15 @@
 #include "main.h"
 
+
+/**
+ * switcher - process a single conversion specifier in the printf format string
+ * @vl: the argument list to extract the value to print from
+ * @counter: the current character count
+ * @i: the index
+ * @s: string
+ * Return: the updated character count
+ */
+
 int swapShift(va_list args, int count, int *i, const char *str)
 {
 switch (str[*i])
@@ -40,6 +50,14 @@ break;
 return (count);
 }
 
+
+
+/**
+ * _printf - custom implementation of printf function
+ * @format: the format string
+ * @...: variable number of arguments
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
 int count = 0, i = 0;

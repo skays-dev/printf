@@ -1,3 +1,11 @@
+#include "main.h"
+
+
+/**
+ * handle_string - Print each character of the input string and count characters printed
+ * @str: The input string to be processed
+ * Return: The total count of characters printed
+ */
 int handle_string(char *str)
 {
 int i = 0;
@@ -14,6 +22,11 @@ i++;
 return (i);
 }
 
+/**
+ * len_num - Calculate the number of digits in a positive integer
+ * @num: The input number
+ * Return: The number of digits in the input number
+ */
 int len_num(int num)
 {
 if (num == 0)
@@ -21,6 +34,11 @@ return (0);
 return (1 + len_num(num / 10));
 }
 
+/**
+ * handle_number - Print an integer and count digits printed
+ * @num: The integer to be printed
+ * Return: The total count of digits printed
+ */
 int handle_number(int num)
 {
 if (num == -214783648)
