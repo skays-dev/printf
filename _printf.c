@@ -18,36 +18,38 @@ int handle_conversion(va_list args, int count, char specifier)
 {
 switch (specifier)
 {
-case 'u': 
+case 'u':
 count = unsigned int handle_unsigned(args, count);
 break;
-case 'o': 
+case 'o':
 count = handle_octal(args, count);
 break;
-case 'x': 
+case 'x':
 count = handle_hex_lower(args, count);
 break;
-case 'X': 
+case 'X':
 count = handle_hex_upper(args, count);
 break;
-case 'c': 
-_putchar(va_arg(args, int)); count++;
+case 'c':
+_putchar(va_arg(args, int));
+count++;
 break;
 case 's':
-case 'S': 
+case 'S':
 count += handle_string(args, count);
 break;
-case 'p': 
+case 'p':
 count += handle_pointer(args, count);
 break;
-case '%': 
-_putchar('%'); count++;
+case '%':
+_putchar('%');
+count++;
 break;
 case 'd':
-case 'i': 
+case 'i':
 count = handle_decimal(args, count);
 break;
-case 'b': 
+case 'b':
 count = handle_binary(args, count);
 break;
 default:
