@@ -103,19 +103,23 @@ int handle_binary(unsigned int num)
  */
 void handle_unsigned(unsigned int num)
 {
-    int num_digits = len_num_unsigned(num);
-    char buffer[20];
-    int index = num_digits - 1;
-    int i; 
+    if (num == 0)
+    {
+        _putchar('0');
+        return;
+    }
+
+    char buffer[20]; 
+    int index = 0;
 
     while (num > 0)
     {
         buffer[index] = (num % 10) + '0';
         num /= 10;
-        index--;
+        index++;
     }
 
-    for (i = index + 1; i < num_digits; i++)
+    for (int i = index - 1; i >= 0; i--)
     {
         _putchar(buffer[i]);
     }
