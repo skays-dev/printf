@@ -53,10 +53,8 @@ count++;
 break;
 case 's':
 case 'S':
-{
 char *s = va_arg(args, char *);
 count += handle_string(s);
-}
 break;
 case 'p':
 {
