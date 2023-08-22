@@ -19,6 +19,34 @@ int swapShift(va_list args, int count, int *i, const char *str)
 {
 switch (str[*i])
 {
+case 'u': // %u
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_num_unsigned(number);
+handle_unsigned(number);
+}
+break;
+case 'o': // %o
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_octal(number);
+handle_octal(number);
+}
+break;
+case 'x': // %x
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_hex_lower(number);
+handle_hex_lower(number);
+}
+break;
+case 'X': // %X
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_hex_upper(number);
+handle_hex_upper(number);
+}
+break;
 case 'c':
 _putchar(va_arg(args, int));
 count++;

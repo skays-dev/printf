@@ -93,3 +93,29 @@ int handle_binary(unsigned int num)
 
     return count;
 }
+
+/**
+ * handle_unsigned - Print the decimal representation of an unsigned int
+ * @num: The unsigned int to be printed
+ *
+ * This function prints the decimal representation of an unsigned int.
+ * It converts the number to a string and prints it character by character.
+ */
+void handle_unsigned(unsigned int num)
+{
+    int num_digits = len_num_unsigned(num);
+    char buffer[20];
+    int index = num_digits - 1;
+
+    while (num > 0)
+    {
+        buffer[index] = (num % 10) + '0';
+        num /= 10;
+        index--;
+    }
+
+    for (int i = index + 1; i < num_digits; i++)
+    {
+        _putchar(buffer[i]);
+    }
+}
