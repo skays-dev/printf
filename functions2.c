@@ -90,7 +90,7 @@ void handle_hex_lower(unsigned int num)
     int num_digits = len_hex_lower(num);
     char buffer[20];
     int index = num_digits - 1;
-    int i; // Declare i outside the loop
+    int i;
 
     while (num > 0)
     {
