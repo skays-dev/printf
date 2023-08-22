@@ -59,10 +59,10 @@ count += _putchar("0");
 }
 else if (str[*i - 1] == 'x' || str[*i - 1] == 'X')
 {
-count += _putchar("0"); 
-count += _putchar(str + (*i - 1)); 
+count += _putchar("0");
+count += _putchar(str + (*i - 1));
 }
-handle_number(num); 
+handle_number(num);
 }
 break;
 case ' ':
