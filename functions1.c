@@ -75,6 +75,7 @@ int handle_binary(unsigned int num)
 {
     int binary_length = 0;
     unsigned int temp = num;
+    int count = 0; 
 
     while (temp > 0)
     {
@@ -82,7 +83,6 @@ int handle_binary(unsigned int num)
         binary_length++;
     }
 
-    int count = 0;
     while (binary_length > 0)
     {
         int bit = (num >> (binary_length - 1)) & 1;
