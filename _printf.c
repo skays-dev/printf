@@ -55,7 +55,9 @@ case '#':
 int num = va_arg(args, int);
 if (str[*i - 1] == 'o')
 {
+
 count += write(1, "0", 1); 
+
 }
 else if (str[*i - 1] == 'x' || str[*i - 1] == 'X')
 {
