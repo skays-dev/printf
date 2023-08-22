@@ -157,17 +157,22 @@ while (format[i] != '\0')
 {
 if (format[i] == '%')
 {
-
 i++;
 count = swapShift(args, count, &i, format);
 }
 else
 {
-_putchar(format[i]);
+if (buffer_index >= BUFFER_SIZE)
+{
+write(1, buffer, buffer_index);
+buffer_index = 0;
+}
+buffer[buffer_index++] = format[i];
 count++;
 }
 i++;
 }
+
 if (buffer_index > 0)
 {
 write(1, buffer, buffer_index);
@@ -175,5 +180,6 @@ write(1, buffer, buffer_index);
 
 va_end(args);
 
-return (count);
+return count;
 }
+
