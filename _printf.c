@@ -42,25 +42,16 @@ return count;
 }
 
 /**
- * swapShift - Process a single conversion specifier in the printf format string
- * @args: Argument list for extracting values
- * @count: Current character count (updated)
- * @i: Index of current character in the format string (updated)
+ * swapShift - Process a conversion specifier in printf format
+ * @args: Args list for values
+ * @count: Curr. char count (updated)
+ * @i: Curr. char index (updated)
  * @str: Printf format string
- * Return: Updated character count after processing specifier
+ * Return: Updated count after processing specifier
  *
- * This function processes a conversion specifier encountered in printf format.
- * Using format char at index `i` in the input `str`, it extracts data from
- * `args` list, formats, and prints it. It updates `count` to track printed chars.
- *
- * Supported format specifiers:
- * - %c: Prints a character.
- * - %s: Prints a null-terminated string.
- * - %S: Prints a null-terminated string (same as %s).
- * - %%: Prints a literal percent character.
- * - %d: Prints an integer as a signed decimal number.
- * - %i: Prints an integer as a signed decimal number (same as %d).
- * - Default case: Prints unknown specifiers, increments `count` by 2.
+ * This function handles a specifier in printf format. Using
+ * char at index `i` in `str`, it extracts data from `args`,
+ * formats, and prints it. Updates `count` to track printed.
  */
 
 int swapShift(va_list args, int count, int *i, const char *str)
