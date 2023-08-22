@@ -8,10 +8,9 @@
 void handle_hex_upper(unsigned int num)
 {
     int num_digits = len_hex_upper(num);
-    char buffer[20]; // Assuming a reasonable maximum length
+    char buffer[20];
     int index = num_digits - 1;
 
-    // Convert the number to a string in reverse order
     while (num > 0)
     {
         int remainder = num % 16;
@@ -20,7 +19,6 @@ void handle_hex_upper(unsigned int num)
         index--;
     }
 
-    // Print the converted string
     for (int i = index + 1; i < num_digits; i++)
     {
         _putchar(buffer[i]);
@@ -40,7 +38,7 @@ int len_hex_upper(unsigned int num)
 
     if (num == 0)
     {
-        return 1; // Special case for 0
+        return 1;
     }
 
     while (num > 0)
