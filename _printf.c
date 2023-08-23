@@ -38,7 +38,7 @@ case '+':
 int num = va_arg(args, int);
 if (num >= 0)
 {
-count += _putchar("+");
+count += _putchar('+');
 }
 handle_number(num);
 }
@@ -59,8 +59,8 @@ count += _putchar("0");
 }
 else if (str[*i - 1] == 'x' || str[*i - 1] == 'X')
 {
-count += _putchar("0");
-count += _putchar(str + (*i - 1));
+count += _putchar('0');
+count += _putchar(str[*i - 1]);
 }
 handle_number(num);
 }
@@ -70,7 +70,7 @@ case ' ':
 int num = va_arg(args, int);
 if (num >= 0)
 {
-count += _putchar(" ");
+count += _putchar(' ');
 }
 handle_number(num);
 }
