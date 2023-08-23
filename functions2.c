@@ -9,7 +9,7 @@
  */
 int len_num_unsigned(unsigned int num)
 {
-    int count = 0; // Declare count at the beginning
+    int count = 0;
     if (num == 0)
         return 1;
 
