@@ -17,11 +17,11 @@
 int swapShift(va_list args, int count, int *i, const char *str)
 {
 (*i)++;
-unsigned int num;
 switch (str[*i])
 {
 case 'u':
 {
+unsigned int num;
 num = va_arg(args, unsigned int);
 count += len_num_unsigned(num);
 handle_unsigned(num);
