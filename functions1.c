@@ -109,8 +109,9 @@ void handle_unsigned(unsigned int num)
         return;
     }
 
-    char buffer[20]; 
+    char buffer[20];
     int index = 0;
+    int i;
 
     while (num > 0)
     {
@@ -119,7 +120,7 @@ void handle_unsigned(unsigned int num)
         index++;
     }
 
-    for (int i = index - 1; i >= 0; i--)
+    for (i = index - 1; i >= 0; i--)
     {
         _putchar(buffer[i]);
     }
