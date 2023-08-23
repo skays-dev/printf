@@ -2,63 +2,6 @@
 #include <stdarg.h>
 
 /**
- * handle_conversion - Handles a specific conversion specifier in printf format
- * @args: Args list for values
- * @count: Curr. char count (updated)
- * @specifier: The conversion specifier to handle
- * Return: Updated count after processing specifier
- *
- * This function processes a specific conversion specifier in printf format,
- * extracting data from `args`, formatting, and printing it based on the
- * provided conversion specifier. It supports various conversion specifiers
- * including 'u', 'o', 'x', 'X', 'c', 's', 'S', 'p', '%', 'd', 'i', and 'b'.
- * The function returns the updated character count after processing.
- */
-int handle_conversion(va_list args, int count, char specifier)
-{
-switch (specifier)
-{
-case 'u':
-count = unsigned int handle_unsigned(args, count);
-break;
-case 'o':
-count = handle_octal(args, count);
-break;
-case 'x':
-count = handle_hex_lower(args, count);
-break;
-case 'X':
-count = handle_hex_upper(args, count);
-break;
-case 'c':
-_putchar(va_arg(args, int));
-count++;
-break;
-case 's':
-case 'S':
-count += handle_string(args, count);
-break;
-case 'p':
-count += handle_pointer(args, count);
-break;
-case '%':
-_putchar('%');
-count++;
-case 'd':
-case 'i':
-count = handle_decimal(args, count);
-case 'b':
-count = handle_binary(args, count);
-default:
-_putchar(str[*i - 1]);
-_putchar(str[*i]);
-count += 2;
-break;
-}
-return (count);
-}
-
-/**
  * swapShift - Process a conversion specifier in printf format
  * @args: Args list for values
  * @count: Curr. char count (updated)
@@ -67,15 +10,123 @@ return (count);
  * Return: Updated count after processing specifier
  *
  * This function handles a specifier in printf format. Using
- * char at index `i` in `str`, it extracts the conversion specifier,
- * and delegates the processing to the appropriate handler using
- * the `handle_conversion` function. Updates `count` to track printed.
+ * char at index `i` in `str`, it extracts data from `args`,
+ * formats, and prints it. Updates `count` to track printed.
  */
+
 int swapShift(va_list args, int count, int *i, const char *str)
 {
 (*i)++;
-char specifier = str[*i];
-count = handle_conversion(args, count, specifier);
+switch (str[*i])
+{
+case 'u':
+{
+unsigned int num = va_arg(args, unsigned int);
+count += unsigned int len_num_unsigned(num);
+unsigned int handle_unsigned(num);
+}
+break;
+case 'o':
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_octal(number);
+handle_octal(number);
+}
+break;
+case '+':
+{
+int num = va_arg(args, int);
+if (num >= 0)
+{
+count += _putchar("+");
+}
+handle_number(num);
+}
+break;
+case 'x':
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_hex_lower(number);
+handle_hex_lower(number);
+}
+break;
+case '#':
+{
+int num = va_arg(args, int);
+if (str[*i - 1] == 'o')
+{
+count += _putchar("0");
+}
+else if (str[*i - 1] == 'x' || str[*i - 1] == 'X')
+{
+count += _putchar("0");
+count += _putchar(str + (*i - 1));
+}
+handle_number(num);
+}
+break;
+case ' ':
+{
+int num = va_arg(args, int);
+if (num >= 0)
+{
+count += _putchar(" ");
+}
+handle_number(num);
+}
+break;
+case 'X':
+{
+unsigned int number = va_arg(args, unsigned int);
+count += len_hex_upper(number);
+handle_hex_upper(number);
+}
+break;
+case 'c':
+_putchar(va_arg(args, int));
+count++;
+break;
+case 's':
+case 'S':
+{
+char *s = va_arg(args, char *);
+count += handle_string(s);
+}
+break;
+case 'p':
+{
+void *ptr = va_arg(args, void *);
+unsigned long ptr_value = (unsigned long)ptr;
+count += len_hex_lower(ptr_value);
+handle_hex_lower(ptr_value);
+}
+break;
+case '%':
+_putchar('%');
+count++;
+break;
+case 'd':
+case 'i':
+{
+int number = va_arg(args, int);
+if (number < 0)
+count++;
+count += len_num(number);
+handle_number(number);
+}
+break;
+case 'b':
+{
+unsigned int number = va_arg(args, unsigned int);
+count += handle_binary(number);
+}
+break;
+default:
+_putchar(str[*i - 1]);
+_putchar(str[*i]);
+count += 2;
+break;
+}
 return (count);
 }
 
@@ -106,23 +157,17 @@ while (format[i] != '\0')
 {
 if (format[i] == '%')
 {
+
 i++;
-char specifier = format[i];
-count = handle_conversion(args, count, specifier);
+count = swapShift(args, count, &i, format);
 }
 else
 {
-if (buffer_index >= BUFFER_SIZE)
-{
-write(1, buffer, buffer_index);
-buffer_index = 0;
-}
-buffer[buffer_index++] = format[i];
+_putchar(format[i]);
 count++;
 }
 i++;
 }
-
 if (buffer_index > 0)
 {
 write(1, buffer, buffer_index);
