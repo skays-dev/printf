@@ -103,9 +103,9 @@ int handle_binary(unsigned int num)
  */
 void handle_unsigned(unsigned int num)
 {
-    char buffer[20]; // Declare buffer at the beginning
+    char buffer[20];
     int index = 0;
-    int i; // Declare 'i' at the beginning
+    int i;
 
     if (num == 0)
     {
@@ -120,7 +120,7 @@ void handle_unsigned(unsigned int num)
         index++;
     }
 
-    for (i = index - 1; i >= 0; i--) // Move the loop control variable declaration here
+    for (i = index - 1; i >= 0; i--)
     {
         _putchar(buffer[i]);
     }
