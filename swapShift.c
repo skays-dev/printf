@@ -23,7 +23,7 @@ case 'u':
 unsigned int num;
 num = va_arg(args, unsigned int);
 count += len_num_unsigned(num);
-count += handle_unsigned(num);
+handle_unsigned(num);
 }
 break;
 case 'o':
