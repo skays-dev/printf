@@ -13,6 +13,8 @@
 
 int _putchar(char c);
 
+int swapShift(va_list args, int count, int *i, const char *str);
+
 int handle_string(char *str);
 int len_num(int num);
 int handle_number(int num);
