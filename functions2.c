@@ -9,17 +9,18 @@
  */
 int len_num_unsigned(unsigned int num)
 {
+    int count = 0; // Declare count at the beginning
     if (num == 0)
         return 1;
 
-    int count = 0;
     while (num > 0)
     {
         num /= 10;
         count++;
     }
-    return count;
+    return (count);
 }
+
 
 /**
  * handle_octal - Print the octal representation of an unsigned int
